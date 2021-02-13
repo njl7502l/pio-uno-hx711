@@ -1,0 +1,3 @@
+[submodule "lib/HX711"]
+	path = lib/HX711
+	url = git@github.com:bogde/HX711.git
