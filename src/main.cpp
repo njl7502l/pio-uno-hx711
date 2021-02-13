@@ -6,7 +6,7 @@
 
 HX711 scale;
 
-float calibration_factor = -7050; //-7050 worked for my 440lb max scale setup
+float calibration_factor = -26110; //体重が70.1kgなのでそこから求めた。
 
 void setup() {
   Serial.begin(9600);
@@ -41,9 +41,13 @@ void loop() {
 
   if (Serial.available()) {
     char temp = Serial.read();
-    if (temp == '+' || temp == 'a')
+    if (temp == 'a')
       calibration_factor += 10;
-    else if (temp == '-' || temp == 'z')
+    else if (temp == 'z')
       calibration_factor -= 10;
+    else if (temp == 'A')
+      calibration_factor += 100;
+    else if (temp == 'Z')
+      calibration_factor -= 100;
   }
 }
